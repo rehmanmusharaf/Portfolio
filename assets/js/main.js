@@ -128,10 +128,32 @@
   });
 
   /**
-   * Initiate glightbox
+   * Initiate glightbox and attach live URL in title on modal open
    */
+  document.querySelectorAll('.glightbox').forEach(function (el) {
+    var detailsLink = el.closest('.portfolio-content')?.querySelector('.details-link');
+    if (detailsLink && detailsLink.href) {
+      el.dataset.liveUrl = detailsLink.href;
+    }
+  });
+
   const glightbox = GLightbox({
-    selector: '.glightbox'
+    selector: '.glightbox',
+    afterSlideLoad: function ({ slide, index }) {
+      var titleEl = slide.querySelector('.gslide-title');
+      if (!titleEl) return;
+
+      var baseTitle = titleEl.dataset.baseTitle || titleEl.textContent || '';
+      titleEl.dataset.baseTitle = baseTitle;
+
+      var sourceSlide = document.querySelectorAll('.glightbox')[index];
+      var liveUrl = sourceSlide?.dataset?.liveUrl;
+      if (liveUrl) {
+        titleEl.innerHTML = baseTitle + ' <a href="' + liveUrl + '" target="_blank" rel="noopener noreferrer" style="color: #2196f3; font-weight: 600; font-size: 0.9em; text-decoration: underline;">Live URL</a>';
+      } else {
+        titleEl.textContent = baseTitle;
+      }
+    }
   });
 
   /**
