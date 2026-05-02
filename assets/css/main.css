@@ -778,6 +778,75 @@ section,
 }
 
 /*--------------------------------------------------------------
+# Experience Section
+--------------------------------------------------------------*/
+.experience .experience-item {
+  padding: 0 0 20px 20px;
+  margin-top: 0;
+  margin-bottom: 30px;
+  border-left: 2px solid var(--accent-color);
+  position: relative;
+}
+
+.experience .experience-item h4 {
+  line-height: 18px;
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--heading-color);
+  margin-bottom: 5px;
+}
+
+.experience .experience-item h5 {
+  font-size: 15px;
+  padding: 0;
+  color: var(--accent-color);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.experience .experience-item p {
+  font-size: 13px;
+  color: color-mix(in srgb, var(--default-color), transparent 30%);
+  margin-bottom: 15px;
+}
+
+.experience .experience-item ul {
+  padding-left: 20px;
+  list-style: none;
+}
+
+.experience .experience-item ul li {
+  padding-bottom: 8px;
+  font-size: 14px;
+  color: var(--default-color);
+  line-height: 1.6;
+}
+
+.experience .experience-item ul li:before {
+  content: "•";
+  margin-right: 10px;
+  color: var(--accent-color);
+  font-weight: bold;
+}
+
+.experience .experience-item:last-child {
+  padding-bottom: 0;
+}
+
+.experience .experience-item::before {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50px;
+  left: -9px;
+  top: 0;
+  background: var(--background-color);
+  border: 2px solid var(--accent-color);
+}
+
+/*--------------------------------------------------------------
 # Portfolio Section
 --------------------------------------------------------------*/
 .portfolio .portfolio-filters {
@@ -1146,7 +1215,7 @@ section,
   border: 0;
   padding: 10px 30px;
   transition: 0.4s;
-  border-radius: 50px;
+  border-radius: 0;
 }
 
 .contact .php-email-form button[type=submit]:hover {
