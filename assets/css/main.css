@@ -847,6 +847,66 @@ section,
 }
 
 /*--------------------------------------------------------------
+# Lifecycle Section
+--------------------------------------------------------------*/
+.lifecycle .section-description {
+  max-width: 700px;
+  margin: 0 auto;
+  color: color-mix(in srgb, var(--default-color), transparent 35%);
+  font-size: 0.98rem;
+  line-height: 1.8;
+}
+
+.lifecycle .service-item {
+  background: var(--surface-color);
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+  border-radius: 24px;
+  padding: 24px;
+  min-height: 160px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.lifecycle .service-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 22px 45px rgba(8, 52, 97, 0.08);
+}
+
+.lifecycle .service-item .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-color);
+  border: 1px solid color-mix(in srgb, var(--accent-color), transparent 80%);
+  width: 60px;
+  height: 60px;
+  border-radius: 20px;
+  margin-right: 18px;
+}
+
+.lifecycle .stage-number {
+  color: var(--accent-color);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.lifecycle .service-item .title {
+  color: var(--heading-color);
+  margin-bottom: 8px;
+}
+
+.lifecycle .service-item .description {
+  color: color-mix(in srgb, var(--default-color), transparent 35%);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+@media (max-width: 767px) {
+  .lifecycle .service-item {
+    align-items: flex-start;
+  }
+}
+
+/*--------------------------------------------------------------
 # Portfolio Section
 --------------------------------------------------------------*/
 .portfolio .portfolio-filters {
