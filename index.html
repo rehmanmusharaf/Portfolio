@@ -557,139 +557,99 @@
         <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
           <!-- End Portfolio Filters -->
 
-          <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
-            <!-- project 1 -->
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-              <div class="portfolio-content h-100 border rounded">
-                <img src="assets/img/portfolio/app-1.png" class="img-fluid" alt="Me&U Project" />
-                <h4 class="portfolio-title text-center mt-2 mb-3">me&u</h4>
+          <div class="row gy-4 isotope-container" id="portfolio-grid" data-aos="fade-up" data-aos-delay="200"></div>
 
-                <div class="portfolio-info">
-                  <a href="assets/img/portfolio/app-1.png" class="glightbox preview-link"
-                    data-gallery="portfolio-gallery-app" data-title="me&u"
-                    data-description="An eCommerce web application built with Shopify, featuring automated order processing and CRM integration to manage customer relationships, reduce manual work, and help increase sales."
-                    title="Preview">
-                    <i class="bi bi-zoom-in"></i>
-                  </a>
+          <script>
+            const portfolioItems = [
+              {
+                title: 'me&u',
+                img: 'assets/img/portfolio/app-1.png',
+                alt: 'Me&U Project',
+                description: 'An eCommerce web application built with Shopify, featuring automated order processing and CRM integration to manage customer relationships, reduce manual work, and help increase sales.',
+                projectUrl: 'https://shop.meandu.com/',
+                filter: 'filter-app'
+              },
+              {
+                title: 'CASHMAN',
+                img: 'assets/img/projects/cashman/1.png',
+                alt: 'CASHMAN Project',
+                description: 'Cashman is a banking application used to manage cash flow between different bank branches. It ensures secure and reliable transactions while maintaining the ACID properties of the SQL database. The system tracks daily balances and transactions and ensures that each day is closed accurately without missing any amount.',
+                projectUrl: 'https://cashman.trackandtracecash.com/',
+                filter: 'filter-app'
+              },
+              {
+                title: 'ChATTRACK',
+                img: 'assets/img/projects/CRT/1.png',
+                alt: 'ChATTRACK Project',
+                description: 'An AI-powered web app that uses scraper services (BrightData, DataForSEO) to analyze your brand presence on the internet, including sentiment and salience, and provides insights in an analytics format to help evaluate your brand or product performance.',
+                projectUrl: 'https://chattrak.io/',
+                filter: 'filter-app'
+              },
+              {
+                title: 'CDL',
+                img: 'assets/img/projects/CDL/1.png',
+                alt: 'CDL Project',
+                description: 'A Company Management platform with hierarchical role management and an internal course enrollment system to manage employees and enhance their knowledge of company workflows and infrastructure.',
+                projectUrl: 'https://cdlchappiness.com/',
+                filter: 'filter-app'
+              },
+              {
+                title: 'ATDSAPAYMENTS',
+                img: 'assets/img/testing.png',
+                alt: 'ATDSAPAYMENTS',
+                description: 'A Truck Dispatching web application designed to track drivers for multiple companies, including monitoring pending and completed payments. The system maintains automated records in a centralized spreadsheet where companies upload driver details, enabling efficient dispatch management and route tracking.',
+                projectUrl: 'https://staging.atdsapayments.com/',
+                filter: 'filter-app'
+              },
+              {
+                title: 'Multivendor Ecommerce Website',
+                img: 'assets/img/projects/Multivendor/home1.png',
+                alt: 'Multivendor Ecommerce Website',
+                description: 'Introducing our MERN stack-powered E-commerce platform, designed for seamless online shopping. Whether you are setting up shop or browsing as a customer, this platform offers modern UI/UX, secure payment gateways, admin and user dashboards, and API-driven product management.',
+                projectUrl: 'https://github.com/rehmanmusharaf/e-shop',
+                galleryImages: [
+                  'assets/img/projects/Multivendor/home2.png',
+                  'assets/img/projects/Multivendor/home3.png',
+                  'assets/img/projects/Multivendor/home4.png'
+                ],
+                filter: 'filter-app'
+              }
+            ];
 
-                  <a href="https://shop.meandu.com/" target="_blank" class="details-link" title="More Details">
-                    <i class="bi bi-link-45deg"></i>
-                  </a>
+            const portfolioGrid = document.getElementById('portfolio-grid');
+
+            portfolioItems.forEach((item, index) => {
+              const galleryId = 'portfolio-gallery-' + index;
+              const wrapper = document.createElement('div');
+              wrapper.className = `col-lg-4 col-md-6 portfolio-item isotope-item ${item.filter}`;
+              wrapper.innerHTML = `
+                <div class="portfolio-content h-100 border rounded">
+                  <img src="${item.img}" class="img-fluid" alt="${item.alt}" />
+                  <h4 class="portfolio-title text-center mt-2 mb-3">${item.title}</h4>
+                  <div class="portfolio-info">
+                    <a href="${item.img}" class="glightbox preview-link" data-gallery="${galleryId}" data-title="${item.title}" data-description="${item.description}" title="Preview">
+                      <i class="bi bi-zoom-in"></i>
+                    </a>
+                    ${item.projectUrl ? `<a href="${item.projectUrl}" target="_blank" class="details-link" title="More Details"><i class="bi bi-link-45deg"></i></a>` : ''}
+                  </div>
                 </div>
-              </div>
-            </div>
-            <!-- project 2 -->
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-              <div class="portfolio-content h-100 border rounded">
-                <img src="assets/img/projects//cashman/1.png" class="img-fluid" alt="CASHMAN Project" />
-                <h4 class="portfolio-title text-center mt-2 mb-3">CASHMAN</h4>
+              `;
 
-                <div class="portfolio-info">
-                  <a href="assets/img/projects//cashman/1.png" class="glightbox preview-link"
-                    data-gallery="portfolio-gallery-app" data-title="CASHMAN"
-                    data-description="Cashman is a banking application used to manage cash flow between different bank branches. It ensures secure and reliable transactions while maintaining the ACID properties of the SQL database. The system tracks daily balances and transactions and ensures that each day is closed accurately without missing any amount."
-                    title="Preview">
-                    <i class="bi bi-zoom-in"></i>
-                  </a>
+              if (item.galleryImages && item.galleryImages.length) {
+                const info = wrapper.querySelector('.portfolio-info');
+                item.galleryImages.forEach(src => {
+                  const hiddenAnchor = document.createElement('a');
+                  hiddenAnchor.href = src;
+                  hiddenAnchor.className = 'glightbox';
+                  hiddenAnchor.dataset.gallery = galleryId;
+                  hiddenAnchor.style.display = 'none';
+                  info.appendChild(hiddenAnchor);
+                });
+              }
 
-                  <a href="https://cashman.trackandtracecash.com/" target="_blank" class="details-link"
-                    title="More Details">
-                    <i class="bi bi-link-45deg"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <!-- project 3 -->
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-              <div class="portfolio-content h-100 border rounded">
-                <img src="assets/img/projects/CRT/1.png" class="img-fluid" alt="ChATTRACK Project" />
-                <h4 class="portfolio-title text-center mt-2 mb-3">ChATTRACK</h4>
-
-                <div class="portfolio-info">
-                  <a href="assets/img/projects/CRT/1.png" class="glightbox preview-link"
-                    data-gallery="portfolio-gallery-app" data-title="ChATTRACK"
-                    data-description="An AI-powered web app that uses scraper services (BrightData, DataForSEO) to analyze your brand presence on the internet, including sentiment and salience, and provides insights in an analytics format to help evaluate your brand or product performance."
-                    title="Preview">
-                    <i class="bi bi-zoom-in"></i>
-                  </a>
-
-                  <a href="https://chattrak.io/" target="_blank" class="details-link" title="More Details">
-                    <i class="bi bi-link-45deg"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <!-- project 4 -->
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-              <div class="portfolio-content h-100 border rounded">
-                <img src="assets/img/projects/CDL/1.png" class="img-fluid" alt="CDL Project" />
-                <h4 class="portfolio-title text-center mt-2 mb-3">CDL</h4>
-
-                <div class="portfolio-info">
-                  <a href="assets/img/projects/CDL/1.png" class="glightbox preview-link"
-                    data-gallery="portfolio-gallery-app" data-title="CDL"
-                    data-description="A Company Management platform with hierarchical role management and an internal course enrollment system to manage employees and enhance their knowledge of company workflows and infrastructure."
-                    title="Preview">
-                    <i class="bi bi-zoom-in"></i>
-                  </a>
-
-                  <a href="https://cdlchappiness.com/" target="_blank" class="details-link" title="More Details">
-                    <i class="bi bi-link-45deg"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <!-- project 5 -->
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-              <div class="portfolio-content h-100 border rounded">
-                <img src="assets/img/testing.png" class="img-fluid" alt="ATDSAPAYMENTS" />
-                <h4 class="portfolio-title text-center mt-2 mb-3">ATDSAPAYMENTS</h4>
-
-                <div class="portfolio-info">
-                  <a href="assets/img/testing.png" class="glightbox preview-link" data-gallery="portfolio-gallery-app"
-                    data-title="ATDSAPAYMENTS"
-                    data-description="A Truck Dispatching web application designed to track drivers for multiple companies, including monitoring pending and completed payments. The system maintains automated records in a centralized spreadsheet where companies upload driver details, enabling efficient dispatch management and route tracking."
-                    title="Preview">
-                    <i class="bi bi-zoom-in"></i>
-                  </a>
-
-                  <a href="https://staging.atdsapayments.com/" target="_blank" class="details-link"
-                    title="More Details">
-                    <i class="bi bi-link-45deg"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <!-- project 6 -->
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-              <div class="portfolio-content h-100 border rounded">
-                <img src="assets/img/projects/Multivendor/home1.png" class="img-fluid"
-                  alt="Multivendor Ecommerce Website" />
-                <h4 class="portfolio-title text-center mt-2 mb-3">Multivendor Ecommerce Website</h4>
-
-                <div class="portfolio-info">
-                  <a href="assets/img/projects/Multivendor/home1.png" class="glightbox preview-link"
-                    data-gallery="portfolio-gallery-multivendor" data-title="Multivendor Ecommerce Website"
-                    data-description="Introducing our MERN stack-powered E-commerce platform, designed for seamless online shopping. Whether you're setting up shop or browsing as a customer, our website offers: Discover a vast range of products and effortlessly make purchases with our user-friendly platform. Easy shop creation and product categorization. User-friendly account setup for hassle-free purchases. Integration with APIs, SEO optimization, and secure payment gateways. Modern UI/UX for engaging browsing experiences. Intuitive user and admin dashboards. Enhanced functionality with Redux toolkit, filters, validation, and authorization. Join us for a secure, user-centric online shopping experience that combines innovation with reliability."
-                    title="Preview">
-                    <i class="bi bi-zoom-in"></i>
-                  </a>
-                  <!-- Hidden gallery images -->
-                  <a href="assets/img/projects/Multivendor/home2.png" class="glightbox"
-                    data-gallery="portfolio-gallery-multivendor" style="display:none;"></a>
-                  <a href="assets/img/projects/Multivendor/home3.png" class="glightbox"
-                    data-gallery="portfolio-gallery-multivendor" style="display:none;"></a>
-                  <a href="assets/img/projects/Multivendor/home4.png" class="glightbox"
-                    data-gallery="portfolio-gallery-multivendor" style="display:none;"></a>
-
-                  <a href="https://github.com/rehmanmusharaf/e-shop" target="_blank" class="details-link"
-                    title="More Details">
-                    <i class="bi bi-link-45deg"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
+              portfolioGrid.appendChild(wrapper);
+            });
+          </script>
 
           <div class="d-flex justify-content-center badge bg-warning text-dark m-3">
             This is just a glimpse of my work—more projects are underway, and several others are available on my GitHub.

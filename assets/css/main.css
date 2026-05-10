@@ -858,12 +858,19 @@ section,
 }
 
 .lifecycle .service-item {
+  display: flex;
+  align-items: flex-start;
   background: var(--surface-color);
   border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
   border-radius: 24px;
-  padding: 24px;
-  min-height: 160px;
+  padding: 10px;
+  height: 110px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+.lifecycle .row > [class*="col-"] {
+  display: flex;
 }
 
 .lifecycle .service-item:hover {
@@ -877,27 +884,30 @@ section,
   justify-content: center;
   background: var(--surface-color);
   border: 1px solid color-mix(in srgb, var(--accent-color), transparent 80%);
-  width: 60px;
-  height: 60px;
-  border-radius: 20px;
-  margin-right: 18px;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  margin-right: 8px;
+  flex-shrink: 0;
 }
 
 .lifecycle .stage-number {
   color: var(--accent-color);
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 0.85rem;
 }
 
 .lifecycle .service-item .title {
   color: var(--heading-color);
-  margin-bottom: 8px;
+  margin-bottom: 2px;
+  font-size: 0.9rem;
+  font-weight: 600;
 }
 
 .lifecycle .service-item .description {
   color: color-mix(in srgb, var(--default-color), transparent 35%);
-  font-size: 0.95rem;
-  line-height: 1.7;
+  font-size: 0.8rem;
+  line-height: 1.4;
 }
 
 @media (max-width: 767px) {
